@@ -1,0 +1,4 @@
+- debug: msg="server-docker role"
+
+- import_tasks: install_docker.yml
+  become: true

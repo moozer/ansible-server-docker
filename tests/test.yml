@@ -1,4 +1,21 @@
 - hosts: all
-  
+
+  roles:
+  - {role: server-docker}
+
+  pre_tasks:
+    - name: update apt
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      register: apt_update_result
+
+    - name: apt upgrade
+      apt:
+        dist-upgrade: yes
+      when: apt_update_result.changed
+
+    - debug: var=apt_update_result
+
   tasks:
   - debug: msg="hi"
