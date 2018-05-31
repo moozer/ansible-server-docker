@@ -1,7 +1,30 @@
+- name: add apt key for docker.com
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+
+- name: add docke repo
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
+    state: present
+  register: docker_repo_update
+
+- name: install docker packages
+  apt: state=present name=apt-transport-https
+
+- name: apt update
+  apt: update_cache=true
+  when: docker_repo_update.changed
+
 - name: install docker packages
   apt:
     state: present
     name: "{{item}}"
   with_items:
-    - docker.io
-    
+    - ca-certificates
+    - curl
+    - gnupg2
+    - software-properties-common
+    - docker-ce
+
+#    - docker.io
