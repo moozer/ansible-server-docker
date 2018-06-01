@@ -2,3 +2,4 @@
 
 - import_tasks: install_docker.yml
   become: true
+  tags: docker
