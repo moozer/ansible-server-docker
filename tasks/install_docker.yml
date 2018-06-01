@@ -3,14 +3,14 @@
     url: https://download.docker.com/linux/debian/gpg
     state: present
 
-- name: add docke repo
+- name: install docker packages
+  apt: state=present name=apt-transport-https
+
+- name: add docker repo
   apt_repository:
     repo: "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
     state: present
   register: docker_repo_update
-
-- name: install docker packages
-  apt: state=present name=apt-transport-https
 
 - name: apt update
   apt: update_cache=true
