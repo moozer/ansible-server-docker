@@ -27,4 +27,8 @@
     - software-properties-common
     - docker-ce
 
-#    - docker.io
+- name: add user to docker group
+  user:
+    name: '{{ user_name }}'
+    groups: docker
+    append: yes
