@@ -19,13 +19,9 @@
 - name: install docker packages
   apt:
     state: present
-    name: "{{item}}"
-  with_items:
-    - ca-certificates
-    - curl
-    - gnupg2
-    - software-properties-common
-    - docker-ce
+    name: [ca-certificates, curl,
+          gnupg2, software-properties-common,
+          docker-ce]
 
 - name: add user to docker group
   user:
