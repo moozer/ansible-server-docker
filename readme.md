@@ -1,3 +1,6 @@
+This is archived. Development is on [gitlab](https://gitlab.com/moozer/ansible-server-docker)
+
+
 server-docker
 =================
 
